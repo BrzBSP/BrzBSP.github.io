@@ -16,31 +16,23 @@ body{
 
 header{
 
-    background:linear-gradient(180deg,#0056D6,#003A8C);
+    background:linear-gradient(180deg,#000000,#000000);
     padding:45px;
     text-align:center;
     box-shadow:0 8px 20px rgba(0,0,0,.5);
 
 }
 
-.logo{
-
-    font-size:42px;
-    font-weight:bold;
-    letter-spacing:2px;
-
+.logo {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;
 }
 
-.azul{
-
-    color:#FFD100;
-
-}
-
-.branco{
-
-    color:white;
-
+.logo img {
+    max-width: 100%;
+    height: auto;
+    width: 300px; /* Ajuste conforme necessário */
 }
 
 header p{
