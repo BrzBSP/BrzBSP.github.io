@@ -1,57 +1,23 @@
-const destaques = [
+async function carregarDestaques() {
+    const resposta = await fetch("./dados/destaques.csv");
+    const texto = await resposta.text();
 
-{
-    nome:"Espresso Tradicional",
+    const linhas = texto.trim().split("\n");
+    const cabecalho = linhas.shift().split(",");
 
-    descricao:"Café encorpado preparado com grãos especiais selecionados.",
+    const destaques = linhas.map(linha => {
+        const valores = linha.split(",");
 
-    preco:6.90,
+        return {
+            nome: valores[0],
+            descricao: valores[1].replace(/^"|"$/g, ""),
+            preco: parseFloat(valores[2]),
+            imagem: valores[3]
+        };
+    });
 
-    imagem:"./img/cheescake.png"
-},
-
-{
-    nome:"Espresso Tradicionala",
-
-    descricao:"Café encorpado preparado com grãos especiais selecionados.",
-
-    preco:6.90,
-
-    imagem:"./img/cheescake.png"
-},
-
-{
-    nome:"Espresso Tradicionala",
-
-    descricao:"Café encorpado preparado com grãos especiais selecionados.",
-
-    preco:6.90,
-
-    imagem:"./img/cheescake.png"
-},
-
-{
-    nome:"Espresso Tradicionala",
-
-    descricao:"Café encorpado preparado com grãos especiais selecionados.",
-
-    preco:6.90,
-
-    imagem:"./img/cheescake.png"
-},
-
-{
-    nome:"Espresso Tradicionala",
-
-    descricao:"Café encorpado preparado com grãos especiais selecionados.",
-
-    preco:6.90,
-
-    imagem:"./img/cheescake.png"
+    return destaques;
 }
-
-
-];
 
 
 
@@ -137,37 +103,36 @@ const produtos = [
 
 
 
-const dest = document.getElementById("destaques");
+async function carregarProdutos() {
+    const destaques = await carregarDestaques();
 
-destaques.forEach(produto=>{
+    const dest = document.getElementById("destaques");
 
-dest.innerHTML+=`
+    dest.innerHTML = "";
 
-<div class="card">
+    destaques.forEach(produto => {
+        dest.innerHTML += `
+            <div class="card">
+                <img src="${produto.imagem}" alt="${produto.nome}">
 
-<img src="${produto.imagem}" alt="${produto.nome}">
+                <div class="info">
+                    <h2>${produto.nome}</h2>
 
-<div class="info">
+                    <p>${produto.descricao}</p>
 
-<h2>${produto.nome}</h2>
+                    <div class="preco">
+                        <span class="valor">
+                            R$ ${produto.preco.toFixed(2).replace(".", ",")}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
 
-<p>${produto.descricao}</p>
+carregarProdutos();
 
-<div class="preco">
-
-<span class="valor">
-R$ ${produto.preco.toFixed(2).replace(".",",")}
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-});
 
 
 const menu = document.getElementById("menu");
