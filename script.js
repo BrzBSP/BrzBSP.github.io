@@ -51,7 +51,7 @@ async function carregarProdutos() {
         const destaques = await carregarCSV("./dados/destaques.csv");
         renderizarProdutos(destaques, "destaques");
 
-        const menu = await carregarCSV("./dados/Menu.csv");
+        const menu = await carregarCSV("./dados/menu.csv");
         renderizarProdutos(menu, "menu");
 
     } catch (erro) {
