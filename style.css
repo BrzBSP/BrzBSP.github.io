@@ -1,0 +1,184 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background:#151515;
+    color:white;
+
+}
+
+/* HEADER */
+
+header{
+
+    background:linear-gradient(180deg,#0056D6,#003A8C);
+    padding:45px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.5);
+
+}
+
+.logo{
+
+    font-size:42px;
+    font-weight:bold;
+    letter-spacing:2px;
+
+}
+
+.azul{
+
+    color:#FFD100;
+
+}
+
+.branco{
+
+    color:white;
+
+}
+
+header p{
+
+    margin-top:10px;
+    opacity:.9;
+
+}
+
+/* MENU */
+
+h1 {
+    padding: 20px 0 0 20px;
+
+}
+
+.menu{
+
+    max-width:1300px;
+    margin:40px auto;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+
+    padding:20px;
+
+}
+
+/* CARD */
+
+.card{
+
+    background:#2A211A;
+    border-radius:18px;
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card img{
+
+    width:100%;
+    height:230px;
+    object-fit:cover;
+
+}
+
+.info{
+
+    padding:22px;
+
+}
+
+.info h2{
+
+    color:#FFD100;
+    margin-bottom:10px;
+    text-align: center;
+
+}
+
+.info p{
+
+    color:#DDD;
+    line-height:1.5;
+    margin-bottom:20px;
+    text-align: center;
+
+}
+
+.preco{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.valor{
+
+    color:#4FC3F7;
+    font-size:24px;
+    font-weight:bold;
+
+}
+
+button{
+
+    background:#0056D6;
+    color:white;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#0078FF;
+
+}
+
+/* Madeira */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background-image:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+    url("https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1400&q=80");
+
+    background-size:cover;
+
+    opacity:.25;
+
+    z-index:-1;
+
+}
