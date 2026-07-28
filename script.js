@@ -1,101 +1,63 @@
-async function carregarDestaques() {
-    const resposta = await fetch("./dados/destaques.csv");
+// Função genérica para carregar um arquivo CSV
+async function carregarCSV(caminho) {
+    const resposta = await fetch(caminho);
     const texto = await resposta.text();
 
     const linhas = texto.trim().split("\n");
-    const cabecalho = linhas.shift().split(",");
+    linhas.shift(); // Remove o cabeçalho
 
-    const destaques = linhas.map(linha => {
-        const valores = linha.split(",");
-
-        return {
-            nome: valores[0],
-            descricao: valores[1].replace(/^"|"$/g, ""),
-            preco: parseFloat(valores[2]),
-            imagem: valores[3]
-        };
-    });
-
-    return destaques;
-}
-
-async function carregarMenu() {
-    const resposta = await fetch("./dados/Menu.csv");
-    const texto = await resposta.text();
-
-    const linhas = texto.trim().split("\n");
-    const cabecalho = linhas.shift().split(",");
-
-    const destaques = linhas.map(linha => {
-        const valores = linha.split(",");
+    return linhas.map(linha => {
+        const [nome, descricao, preco, imagem] = linha.split(",");
 
         return {
-            nome: valores[0],
-            descricao: valores[1].replace(/^"|"$/g, ""),
-            preco: parseFloat(valores[2]),
-            imagem: valores[3]
+            nome,
+            descricao: descricao.replace(/^"|"$/g, ""),
+            preco: parseFloat(preco),
+            imagem
         };
     });
-
-    return menu;
 }
 
+// Função para renderizar os cards
+function renderizarProdutos(produtos, elementoId) {
+    const container = document.getElementById(elementoId);
 
+    container.innerHTML = "";
 
+    produtos.forEach(produto => {
+        container.innerHTML += `
+            <div class="card">
+                <img src="./img/${produto.imagem}" alt="${produto.nome}">
+
+                <div class="info">
+                    <h2>${produto.nome}</h2>
+
+                    <p>${produto.descricao}</p>
+
+                    <div class="preco">
+                        <span class="valor">
+                            R$ ${produto.preco.toFixed(2).replace(".", ",")}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// Função principal
 async function carregarProdutos() {
-    const destaques = await carregarDestaques();
+    try {
+        const destaques = await carregarCSV("./dados/destaques.csv");
+        renderizarProdutos(destaques, "destaques");
 
-    const dest = document.getElementById("destaques");
+        const menu = await carregarCSV("./dados/Menu.csv");
+        renderizarProdutos(menu, "menu");
 
-    dest.innerHTML = "";
-
-    destaques.forEach(produto => {
-        dest.innerHTML += `
-            <div class="card">
-                <img src="${produto.imagem}" alt="${produto.nome}">
-
-                <div class="info">
-                    <h2>${produto.nome}</h2>
-
-                    <p>${produto.descricao}</p>
-
-                    <div class="preco">
-                        <span class="valor">
-                            R$ ${produto.preco.toFixed(2).replace(".", ",")}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-
-
-    const menu = await carregarMenu();
-
-    const me = document.getElementById("menu");
-
-    me.innerHTML = "";
-
-    menu.forEach(produto => {
-        dest.innerHTML += `
-            <div class="card">
-                <img src="${produto.imagem}" alt="${produto.nome}">
-
-                <div class="info">
-                    <h2>${produto.nome}</h2>
-
-                    <p>${produto.descricao}</p>
-
-                    <div class="preco">
-                        <span class="valor">
-                            R$ ${produto.preco.toFixed(2).replace(".", ",")}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-
+    } catch (erro) {
+        console.error("Erro ao carregar os arquivos CSV:", erro);
+    }
 }
 
+// Inicia o carregamento
 carregarProdutos();
