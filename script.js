@@ -86,7 +86,6 @@ botoes.forEach(botao => {
 
 
 const titulos = document.querySelectorAll("h1[id]");
-const botoes = document.querySelectorAll(".categorias button");
 
 const observer = new IntersectionObserver((entries) => {
 
