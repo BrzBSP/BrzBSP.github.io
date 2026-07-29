@@ -61,3 +61,25 @@ async function carregarProdutos() {
 
 // Inicia o carregamento
 carregarProdutos();
+
+const botoes = document.querySelectorAll(".categorias button");
+
+botoes.forEach(botao => {
+
+    botao.addEventListener("click", () => {
+
+        // Destaca o botão ativo
+        botoes.forEach(b => b.classList.remove("ativo"));
+        botao.classList.add("ativo");
+
+        // Faz o scroll
+        const destino = document.getElementById(botao.dataset.target);
+
+        destino.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+});

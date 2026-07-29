@@ -11,6 +11,10 @@ body{
     color:white;
 
 }
+html{
+    scroll-behavior:smooth;
+}
+
 
 /* HEADER */
 
@@ -59,6 +63,8 @@ h1 {
     gap:30px;
 
     padding:20px;
+
+    scroll-margin-top:90px; /* caso a barra fique fixa */
 
 }
 
@@ -172,5 +178,77 @@ body::before{
     opacity:.25;
 
     z-index:-1;
+
+}
+
+
+/* ==========================
+   CATEGORIAS
+========================== */
+
+.categorias{
+    display:flex;
+    gap:12px;
+
+    padding:15px 20px;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    white-space:nowrap;
+
+    position:sticky;
+    top:0;
+
+    background:#151515;
+    z-index:100;
+
+    scroll-behavior:smooth;
+}
+
+/* Esconde a barra de rolagem */
+
+.categorias::-webkit-scrollbar{
+    display:none;
+}
+
+.categorias{
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+}
+
+.categorias button{
+
+    flex:0 0 auto;
+
+    padding:12px 22px;
+
+    border:none;
+    border-radius:30px;
+
+    background:#2A211A;
+    color:#FFF;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.categorias button:hover{
+
+    background:#FFD100;
+    color:#111;
+
+}
+
+.categorias button.ativo{
+
+    background:#FFD100;
+    color:#111;
+
+    box-shadow:0 0 12px rgba(255,209,0,.35);
 
 }
