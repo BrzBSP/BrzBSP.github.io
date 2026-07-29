@@ -7,7 +7,7 @@ async function carregarCSV(caminho) {
     linhas.shift(); // Remove o cabeçalho
 
     return linhas.map(linha => {
-        const [nome, descricao, preco, imagem] = linha.split(",");
+        const [nome, descricao, preco, imagem] = linha.split(";");
 
         return {
             nome,

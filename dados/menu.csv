@@ -1,4 +1,2 @@
-nome,descricao,preco,imagem
-Espresso Tradicional,"Café encorpado preparado com grãos especiais selecionados.",6.90,cheescake.png
-Capuccino,"Café com leite vaporizado e espuma.",8.50,capuccino.png
-Mocha,"Chocolate e café expresso.",10.90,mocha.png
+nome;descricao;preco;imagem
+Espresso Tradicional;Caf� encorpado preparado com gr�os especiais selecionados.;,6.90;cheescake.png
