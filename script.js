@@ -83,3 +83,29 @@ botoes.forEach(botao => {
     });
 
 });
+
+
+const titulos = document.querySelectorAll("h1[id]");
+const botoes = document.querySelectorAll(".categorias button");
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            botoes.forEach(btn => btn.classList.remove("ativo"));
+
+            document
+                .querySelector(`.categorias button[data-target="${entry.target.id}"]`)
+                ?.classList.add("ativo");
+
+        }
+
+    });
+
+}, {
+    threshold: 0.5
+});
+
+titulos.forEach(titulo => observer.observe(titulo));
